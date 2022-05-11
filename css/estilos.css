@@ -160,3 +160,43 @@ main{
     font-size: 20px;
     cursor: pointer;
 }
+
+.contenedor__registro{
+    background-color: #000;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.contenedor__registro h1{
+    color: yellow;
+    text-align: center;
+    width: 90%;
+    height: 40px;
+    background-color: #fff2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.contenedor__registro label{
+    color: #fff;
+    text-align: left;
+    width: 90%;
+}
+
+.contenedor__registro div{
+    width: 90%;
+}
+.contenedor__registro input{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: none;
+}
