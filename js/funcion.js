@@ -6,8 +6,10 @@ card = [
     { nombre: "Gafas", img: "./img/gafas.png", costo: 10000, descripcion: "Gafas con filtro de luz azul, marco metalico, estuche y limpiador"},
     { nombre: "Chaqueta", img: "./img/chaqueta.png", costo: 40000, descripcion: "Chaqueta de color azul y rojo, en tela tipo beisbolista, talla S"},
     { nombre: "Tenis", img: "./img/tenis.png", costo: 120000, descripcion: "Tenis de color azul y blanco, marca nike, cordones de color negro, con garantia de 2 meses"},
-    { nombre: "Reloj", img: "./img/reloj.png", costo: 80000, descripcion: "Reloj de color rosado, con medidor de temperatura, distancia, duracion, material metalico."}
-
+    { nombre: "Reloj", img: "./img/reloj.png", costo: 80000, descripcion: "Reloj de color rosado, con medidor de temperatura, distancia, duracion, material metalico."},
+    { nombre: "waifu 4k", img: "./img/ardila.jpg", costo: 12000, descripcion: "la que te hara feliz" },
+    {  nombre: "Mouse", img: "./img/mouse.png", costo: 120000, descripcion: "Mouse Gamer"},
+    { nombre: "Goku", img: "./img/goku.gif", costo:"Tu corazon", descripcion: "Muy fuerte"}
 ];
 
 card.forEach(element => {
@@ -20,6 +22,7 @@ card.forEach(element => {
     let $clone = document.importNode($template, true);
     $fragmento.appendChild($clone)
 });
+
 
 document.querySelector(".contenedor__tarjetas").appendChild($fragmento);
 
