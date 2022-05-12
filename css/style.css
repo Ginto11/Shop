@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?9f9apb');
-  src:  url('fonts/icomoon.eot?9f9apb#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?9f9apb') format('truetype'),
-    url('fonts/icomoon.woff?9f9apb') format('woff'),
-    url('fonts/icomoon.svg?9f9apb#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?djzwo5');
+  src:  url('fonts/icomoon.eot?djzwo5#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?djzwo5') format('truetype'),
+    url('fonts/icomoon.woff?djzwo5') format('woff'),
+    url('fonts/icomoon.svg?djzwo5#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-flecha-arriba:before {
+  content: "\e901";
+}
 .icon-luna:before {
   content: "\e900";
 }
