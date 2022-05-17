@@ -1,8 +1,8 @@
+import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $template = document.getElementById("template").content
-const $fragmento = document.createDocumentFragment()
+const $fragmento = document.createDocumentFragment();
 
-tarjetas = []
-
+const tarjetas = []
 
 class Tarjeta{
     static id = 0
@@ -47,7 +47,7 @@ class Tarjeta{
 
 }
 
-card = [
+const card = [
     { nombre: "Guantes", img: "./img/guantes.png", costo: 30000, descripcion: "Guantes para cicla de color negro y material en cuero" },
     { nombre: "Gorro", img: "./img/gorro.png", costo: 15000, descripcion: "Gorro en tela, de color gris y de marca nismo" },
     { nombre: "Gafas", img: "./img/gafas.png", costo: 10000, descripcion: "Gafas con filtro de luz azul, marco metalico, estuche y limpiador"},
@@ -56,8 +56,9 @@ card = [
     { nombre: "Reloj", img: "./img/reloj.png", costo: 80000, descripcion: "Reloj de color rosado, con medidor de temperatura, distancia, duracion, material metalico."},
     { nombre: "Mouse", img: "./img/mouse.png", costo: 25000, descripcion: "Mouse optico de color negro tipo gamer, con luces de colores"},
     { nombre: "Celular", img: "./img/celular.png", costo: 800000, descripcion: "Celular Samsung A3, con 8GB RAM, android 11, 164 GB de almacenamiento interno y con manos libre" },
-    { nombre: "Portatil", img: "./img/portatil.png", costo: 1800000, descripcion: "Portatil intel core 5, 500GB de disco duro, 4 GB RAM, windows 10 pro"}
-
+    { nombre: "Portatil", img: "./img/portatil.png", costo: 1800000, descripcion: "Portatil intel core 5, 500GB de disco duro, 4 GB RAM, windows 10 pro"},
+    { nombre: "Televisor", img: "./img/tv.png", costo: 400000, descripcion: "Televisor con pantalla led de 32 pulgadas HD smart Tv, Garantia de 1 año" },
+    { nombre: "Camara Web", img: "./img/camara.png", costo: 200000, descripcion: "Camara web de color negro, Full HD 1080p 30 fps Video Signa, 2 x Built-In Beamforming Microphones"}
 ];
 
 
@@ -85,10 +86,12 @@ const btn = document.getElementById("btn__cambiar--color");
 btn.addEventListener("click", ()=>{
     btn.classList.toggle("icon-sol");
     btn.classList.toggle("icon-luna")
+    if(btn.classList.contains("icon-sol")){
+        cambiarColorDiaSoleado();
+    }
 });
 
 document.addEventListener("click", e =>{
-    console.log(e.target)
     if(e.target.dataset.id){
         console.log(e.target.dataset.id)
         
@@ -120,3 +123,5 @@ document.addEventListener("click", e =>{
     })
 })
  */
+
+

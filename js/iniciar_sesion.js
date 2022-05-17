@@ -1,9 +1,10 @@
+import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $formulario_Registro = document.getElementById("formulario__registro");
 const $formulario_Sesion = document.getElementById("formulario__sesion");
 const $btnRegistro = document.getElementById("btn__registrarse")
 const $btnLogearme = document.getElementById("btn__logearse");
 
-listaUsuarios = [
+const listaUsuarios = [
     { correo: "empresanvs@gmail.com", password: 1001944317 }
 ]
 
@@ -42,9 +43,22 @@ $formulario_Registro.addEventListener("submit", e =>{
     })
 })
 
+
+
 $btnRegistro.addEventListener("click", ()=>{
     crearFrameRegistro()
 })
+
+const btn = document.getElementById("btn__cambiar--color");
+
+
+btn.addEventListener("click", ()=>{
+    btn.classList.toggle("icon-sol");
+    btn.classList.toggle("icon-luna")
+    if(btn.classList.contains("icon-sol")){
+        cambiarColorDiaSoleado();
+    }
+});
 
 $btnLogearme.addEventListener("click", ()=>{
     crearFrameLogin()
