@@ -15,37 +15,55 @@
             <div class="contenedor__links1">
                 <h1 class="titulo__cabecera">Shop</h1>
                 <a class="actual" href="index.html"> Inicio </a>
-                <a href="productos.html"> Productos </a>
-                <a href=""> Acerca de</a>
-                <a href=""> Contacto</a>
             </div>
 
             
 
             <div class="contenedor__cambiar--color">
-                <button class="registrarse">Registrarse</button>
+                <button id="btn__registrarse" class="registrarse">Registrarse</button>
+                <button style="display: none;" id="btn__logearse" class="logearme">Login</button>
                 <button id="btn__cambiar--color" class="icon icon-sol"></button>
             </div>
         </header>
 
         <section>
-            <form class="contenedor__registro">
+            <form id="formulario__sesion" class="contenedor__registro">
+                <h1>Login</h1>
+                <div>
+                    <label for="">Email</label>
+                    <input id="correo" type="email" name="correo1" placeholder="Ingrese su correo" required>
+                </div>
+                <div>
+                    <label for="">Password</label>
+                    <input id="password" type="password" name="password1" placeholder="Ingrese su contraseña" required>
+                </div>
+                <div>
+                    <input type="submit" value="Iniciar Sesion">
+                </div>
+                <p>Si no tiene cuenta, <a href="">Registrese</a></p>
+            </form>
+
+
+            <form id="formulario__registro" style="display: none;" class="contenedor__registro">
                 <h1>Registro</h1>
                 <div>
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="juan@gamil.com" required>
+                    <label for="">Email</label>
+                    <input id="correo2" type="email" name="correo2" placeholder="Ingrese su correo" required>
                 </div>
                 <div>
                     <label for="Password">Password</label>
-                    <input type="password" name="password" placeholder="543254354" required>
+                    <input id="password2" type="password" name="password2" placeholder="Ingrese su contraseña" required>
                 </div>
                 <div>
                     <input type="submit" value="Registrarse">
                 </div>
                 <p>Si ya tiene cuenta, <a href="">inicie sesion</a></p>
             </form>
+
+
         </section>
     </main>
     
+    <script src="js/iniciar_sesion.js"></script>
 </body>
 </html>

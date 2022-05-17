@@ -80,7 +80,7 @@ main{
     color: #00FFD4;
 }
 
-.registrarse{
+.registrarse, .logearme{
     color: yellow;
     text-decoration: none;
     background-color: #fff2;
@@ -222,8 +222,6 @@ main{
     border-radius: 10px;
     text-align: center;
     border: none;
-    animation-name: agrandar;
-    animation-delay: 2s;
 }
 
 .contenedor__registro input[type="submit"]{
@@ -244,14 +242,4 @@ main{
     position: fixed;
     bottom: 20px;
     right: 20px;
-}
-
-@keyframes agrandar{
-    0%{
-        transform: scale(1);
-    }
-
-    100%{
-        transform: scale(2);
-    }
 }
