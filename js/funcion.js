@@ -27,7 +27,7 @@ class Tarjeta{
         $fragmento.appendChild($clone)
     }
 
-    static comprar(id){
+    /* static comprar(id){
         tarjetas.map(item =>{
             if(item.id == id){
                 console.log(item)
@@ -43,7 +43,7 @@ class Tarjeta{
             }
         })
         
-    }
+    } */
 
 }
 
@@ -90,12 +90,15 @@ btn.addEventListener("click", ()=>{
         cambiarColorDiaSoleado();
     }
 });
-
+let $overlay = document.querySelector(".overlay");
 document.addEventListener("click", e =>{
-    if(e.target.dataset.id){
-        console.log(e.target.dataset.id)
+    if(e.target.matches("button")){
+        console.log($overlay)
+        document.querySelector(".overlay").style.display = "block";
+        let id = e.target.dataset.id;
+        generarFrameCompra(id);
         
-        if(e.target.matches("button")){
+        /* if(e.target.matches("button")){
             
             tarjetas.map((item) =>{
 
@@ -104,7 +107,27 @@ document.addEventListener("click", e =>{
                     Tarjeta.comprar(id)
                 }
             })
+        } */
+    }
+    else if(e.target.className == "cancelar__pago"){
+        try {
+            $("#borrar").remove()
+            document.querySelector("body").removeChild($overlay)
+        } catch (error) {
+            console.log("Error en el " + error)
         }
+        let nuevoOverlay = document.createElement("div");
+        nuevoOverlay.classList.add("overlay")
+        nuevoOverlay.classList.add("inactive")
+        nuevoOverlay.setAttribute("id", "borrar")
+
+        let nuevoTemplate = document.createElement("div")
+        nuevoTemplate.classList.add("frame_pago")
+        nuevoTemplate.setAttribute("id", "ventana__compra")
+        
+        nuevoOverlay.appendChild(nuevoTemplate)
+        document.body.appendChild(nuevoOverlay)
+        alert("Has cancelado la compra")
     }
 })
 
@@ -124,4 +147,46 @@ document.addEventListener("click", e =>{
 })
  */
 
+let $frameCompra = document.getElementById("ventana__compra").content;
+let $fragmentoCompra = document.createDocumentFragment();
 
+function generarFrameCompra(id){
+
+    tarjetas.filter(item =>{
+        
+        if(item.id == id){
+            console.log(item)
+            console.log("encontrado")
+            document.getElementById("ventana__compra").style.transform = "scale(0.7)";
+            document.getElementById("ventana__compra").style.transition = ".3s ease all"
+            $frameCompra.querySelector("img").setAttribute("src", item.imagen)
+            $frameCompra.querySelector("img").setAttribute("alt", item.nombre)
+            $frameCompra.querySelector(".descripcion").textContent = item.descripcion
+            $frameCompra.querySelector(".nombre").setAttribute("value", item.nombre)
+            $frameCompra.querySelector(".costo").setAttribute("value", item.costo)
+            $frameCompra.querySelector(".iva").setAttribute("value", item.costo * 0.19)
+            $frameCompra.querySelector(".pago").setAttribute("value", (item.costo * 0.19) + item.costo)
+
+            setTimeout(()=>{
+                document.getElementById("ventana__compra").style.transform = "scale(1)";
+            }, 100)
+            
+            let $clone = document.importNode($frameCompra, true);
+            $fragmentoCompra.appendChild($clone)
+        }
+
+        document.querySelector(".frame_pago").appendChild($fragmentoCompra)
+    })
+}
+
+function limpiar(){
+    $frameCompra.querySelector("img").setAttribute("src", "")
+    $frameCompra.querySelector("img").setAttribute("alt", "")
+    $frameCompra.querySelector(".descripcion").textContent =""
+    $frameCompra.querySelector(".nombre").setAttribute("value", "")
+    $frameCompra.querySelector(".costo").setAttribute("value", "")
+    $frameCompra.querySelector(".iva").setAttribute("value", "")
+    $frameCompra.querySelector(".pago").setAttribute("value", "")
+
+    console.log($frameCompra)
+}

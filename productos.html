@@ -28,7 +28,7 @@
 
             <div class="contenedor__cambiar--color">
                 <button class="registrarse">Registrarse</button>
-                <button id="btn__cambiar--color" class="icon icon-luna"></button>
+                <button disabled id="btn__cambiar--color" class="icon icon-luna"></button>
             </div>
         </header>
         <div class="contenedor__tarjetas"></div>
@@ -48,7 +48,49 @@
         </div>
     </template>
 
+    <div class="overlay inactive">
+        <template id="ventana__compra" class="frame_pago">
+            <h1> Pago del elemento </h1>
+            <div class="contenedor__datos">
+
+                <div class="contenedor__elemento">
+                    <figure class="contenedor__img">
+                        <img>
+                    </figure>
+                    <p class="descripcion"></p>
+                </div>
+
+                <div class="contenedor__valores">
+                    <div>
+                        <label for="nombre"> Nombre </label> <br>
+                        <input class="nombre" name="nombre" type="text" placeholder="Nombre" disabled> 
+                    </div>
+                    
+                    <div>
+                        <label for="costo"> Costo </label> <br>
+                        <input class="costo" name="costo" type="number" placeholder="Costo" disabled>
+                    </div>
+                    
+                    <div>
+                        <label for="iva"> Iva </label> <br>
+                        <input class="iva" name="iva" type="number" placeholder="Iva" disabled>
+                    </div>
+                    
+                    <div>
+                        <label for="pago"> Pago Neto </label> <br>
+                        <input class="pago" name="pago" type="number" placeholder="Pago Neto" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="contenedor__botones"> 
+                <input class="cancelar__pago" type="submit" value="Cancelar">
+                <input type="submit" value="Pagar">
+            </div>
+        </template>
+    </div>
+
     <script src="js/funcion.js" type="module"></script>
+
     
 </body>
 </html>
