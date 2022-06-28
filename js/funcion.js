@@ -9,7 +9,7 @@ class Tarjeta{
     constructor(titulo, imagen, costo, descripcion){
         this.nombre = titulo;
         this.imagen = imagen;
-        this.descripcion = descripcion; 
+        this.descripcion = descripcion;
         this.costo = costo;
         this.id = Tarjeta.id
         Tarjeta.id++
@@ -32,17 +32,17 @@ class Tarjeta{
             if(item.id == id){
                 console.log(item)
                 let confirmar = confirm("Deseas comprar el elemento?");
-                
+
                 if(confirmar){
                     let costo = parseInt(prompt("Ingresa el valor?"));
                     if(!costo) return alert("Ingrese caracteres validos");
                     (item.costo > costo) ? alert("Sin fondos suficientes")
                         : alert("Comprado con exito");
-                        
+
                 }
             }
         })
-        
+
     } */
 
 }
@@ -97,9 +97,9 @@ document.addEventListener("click", e =>{
         document.querySelector(".overlay").style.display = "block";
         let id = e.target.dataset.id;
         generarFrameCompra(id);
-        
+
         /* if(e.target.matches("button")){
-            
+
             tarjetas.map((item) =>{
 
                 if(item.id == e.target.dataset.id){
@@ -124,7 +124,7 @@ document.addEventListener("click", e =>{
         let nuevoTemplate = document.createElement("div")
         nuevoTemplate.classList.add("frame_pago")
         nuevoTemplate.setAttribute("id", "ventana__compra")
-        
+
         nuevoOverlay.appendChild(nuevoTemplate)
         document.body.appendChild(nuevoOverlay)
         alert("Has cancelado la compra")
@@ -153,7 +153,7 @@ let $fragmentoCompra = document.createDocumentFragment();
 function generarFrameCompra(id){
 
     tarjetas.filter(item =>{
-        
+
         if(item.id == id){
             console.log(item)
             console.log("encontrado")
@@ -170,7 +170,7 @@ function generarFrameCompra(id){
             setTimeout(()=>{
                 document.getElementById("ventana__compra").style.transform = "scale(1)";
             }, 100)
-            
+
             let $clone = document.importNode($frameCompra, true);
             $fragmentoCompra.appendChild($clone)
         }

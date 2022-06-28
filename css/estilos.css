@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 body{
-    background-color: #383737;
+    background-color: #dfdfdf;
 }
 
 body::-webkit-scrollbar{
@@ -54,7 +54,8 @@ main{
 
 .contenedor__links1{
     display: flex;
-    justify-content: center;
+    width: 70%;
+    justify-content: flex-start;
     gap: 30px;
     align-items: center;
     margin-left: 30px;
@@ -101,6 +102,12 @@ main{
     align-items: center;
     gap: 30px;
     margin-right: 30px;
+}
+
+@media screen and(max-width: 400px){
+    .contenedor__cambiar--color{
+        display: none;
+    }
 }
 
 .titulo__cabecera{
@@ -343,13 +350,14 @@ main{
     gap: 30px;
 }
 
+
 .contenedor__botones input {
     height: 30px;
     width: 20%;
     text-align: center;
     border-radius: 20px;
     border: 3px solid #000;
-    background-color: #f00; 
+    background-color: #f00;
     cursor: pointer;
     transition: .4s ease all;
 }
@@ -360,5 +368,43 @@ main{
 }
 
 
+/*   Estilos de la Pagina de Inicio    */
 
 
+
+.seccion{
+  width: 70%;
+  background: #efefef;
+  color: #777;
+  padding: 30px;
+  box-shadow: 0 0 3px #000;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.seccion h2{
+  color: #000;
+}
+
+.margen-texto {
+  margin: 0 20px;
+}
+
+.articulo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+strong{
+  font-weigth: bold;
+  color: #333;
+}
+
+.lista-objetivos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
