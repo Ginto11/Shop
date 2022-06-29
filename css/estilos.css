@@ -34,7 +34,7 @@ main{
     width: 100%;
     height: 70px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #000;
 }
@@ -54,7 +54,6 @@ main{
 
 .contenedor__links1{
     display: flex;
-    width: 70%;
     justify-content: flex-start;
     gap: 30px;
     align-items: center;
@@ -487,10 +486,16 @@ strong{
 @media screen and (max-width: 990px) {
     .frame_pago{
         display: flex;
+        height: 100vh;
+        overflow-y: scroll;
         gap: 0px;
         justify-content: space-around;
         align-items: center;
         font-size: 10px;
+    }
+
+    .contenedor__links1{
+        display: none;
     }
 
     .frame_pago .contenedor__datos, .contenedor__botones {
