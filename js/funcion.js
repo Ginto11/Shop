@@ -2,6 +2,7 @@ import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $template = document.getElementById("template").content
 const $fragmento = document.createDocumentFragment();
 
+//  EN ESTE ARRAY SE GUARDAN LAS TARJETAS
 const tarjetas = []
 
 class Tarjeta{
@@ -15,6 +16,7 @@ class Tarjeta{
         Tarjeta.id++
     }
 
+    // METODO QUE CREA LAS TARJETAS CON ID
     crearTajetas(){
         $template.querySelector("h1").textContent = this.nombre;
         $template.querySelector("img").setAttribute("src", this.imagen);
@@ -47,6 +49,7 @@ class Tarjeta{
 
 }
 
+// ARRAY DE OBJETOS, CADA OBJETO TIENE LA INFORMACION DE CADA TARJETA
 const card = [
     { nombre: "Guantes", img: "./img/guantes.png", costo: 30000, descripcion: "Guantes para cicla de color negro y material en cuero" },
     { nombre: "Gorro", img: "./img/gorro.png", costo: 15000, descripcion: "Gorro en tela, de color gris y de marca nismo" },
@@ -58,7 +61,15 @@ const card = [
     { nombre: "Celular", img: "./img/celular.png", costo: 800000, descripcion: "Celular Samsung A3, con 8GB RAM, android 11, 164 GB de almacenamiento interno y con manos libre" },
     { nombre: "Portatil", img: "./img/portatil.png", costo: 1800000, descripcion: "Portatil intel core 5, 500GB de disco duro, 4 GB RAM, windows 10 pro"},
     { nombre: "Televisor", img: "./img/tv.png", costo: 400000, descripcion: "Televisor con pantalla led de 32 pulgadas HD smart Tv, Garantia de 1 año" },
-    { nombre: "Camara Web", img: "./img/camara.png", costo: 200000, descripcion: "Camara web de color negro, Full HD 1080p 30 fps Video Signa, 2 x Built-In Beamforming Microphones"}
+    { nombre: "Camara Web", img: "./img/camara.png", costo: 200000, descripcion: "Camara web de color negro, Full HD 1080p 30 fps Video Signa, 2 x Built-In Beamforming Microphones"},
+    { nombre: "Cicla", img: "./img/cicla.png", costo: 1000000, descripcion: "Cicla de color negro, con estructura metalica, guarda barros en pasta de color negro, llantas anchas y frenos con cambios." },
+    { nombre: "Base Refrigerante", img: "./img/base_refrigerante.png", costo: 400000, descripcion: "Base regrigerante de 4 ventiladores, de color rojo, con dos soportes en pasta, puertos USB."},
+    { nombre: "Todo en Uno", img: "./img/only_one.png", costo: 2000000, descripcion: "Todo en uno, de 22 Pulgadas, con soporte metalico, con mouse optico alambrico y teclado, procesador core i3 10Th, de 4GB de RAM y un disco duro de 1 Tera."},
+    { nombre: "Computador", img: "./img/computer.png", costo: 600000, descripcion: "Computador de 20 pulgadas con CPU de $GB de RAM, con teclado y mouse alambrico y con windows 10."},
+    { nombre: "Maleta Rodante", img: "./img/maleta_rodante.png", costo: 300000, descripcion: "Maleta Rodante de color rojo, dos ruedas en pasta, y mango en pasta."},
+    { nombre: "Impresora", img: "./img/impresora.png", costo: 200000, descripcion: "Impresora de color gris multifuncional, con escaner, fotocopiadora y con menu de botones."},
+    { nombre: "Nevera", img: "./img/nevera.png", costo: 1200000, descripcion: "Nevera de color gris, con dispensador de agua, con refrigerador, con temperatura ajustable y 4 soportes."},
+    { nombre: "Tableta", img: "./img/tablet.png", costo: 800000, descripcion: "Tablet Lenovo con lapiz Tab P12 pro, pantalla de 12 pulgadas, y con sistema operativo android."}
 ];
 
 
@@ -72,24 +83,23 @@ const card = [
 //     let $clone = document.importNode($template, true);
 //     $fragmento.appendChild($clone)
 // });
+
+/*
+    FOREACH QUE CREA LAS TARJETAS CON ID, DE ACUERDO AL METODO CREARTARJETAS()
+    Y LAS VA INGRESANDO A AL ARRAY TARJETAS
+*/
 card.forEach(elemt =>{
 
     const tarjeta = new Tarjeta(elemt.nombre, elemt.img, elemt.costo, elemt.descripcion)
     tarjeta.crearTajetas()
     tarjetas.push(tarjeta)
 })
+
+// SE AGREGA EL FRAGMENTO AL DOM, ESTE FRAGMENTO TIENE EL CLON CON CADA UNA DE LAS TARJETAS
 document.querySelector(".contenedor__tarjetas").appendChild($fragmento);
 
 
-const btn = document.getElementById("btn__cambiar--color");
-
-btn.addEventListener("click", ()=>{
-    btn.classList.toggle("icon-sol");
-    btn.classList.toggle("icon-luna")
-    if(btn.classList.contains("icon-sol")){
-        cambiarColorDiaSoleado();
-    }
-});
+// BLOQUE DE CODIGO QUE CREA LA INTERFAZ DE PAGO, DE ACUERDO A LA VALIDACION Y AL METODO
 let $overlay = document.querySelector(".overlay");
 document.addEventListener("click", e =>{
     if(e.target.matches("button")){
@@ -109,6 +119,7 @@ document.addEventListener("click", e =>{
             })
         } */
     }
+    // BLOQUE DE CODIGO QUE CANCELA EL PAGO DEL ELEMENTO, DE ACUERDO A LA VALIDACION
     else if(e.target.className == "cancelar__pago"){
         try {
             $("#borrar").remove()
@@ -150,6 +161,7 @@ document.addEventListener("click", e =>{
 let $frameCompra = document.getElementById("ventana__compra").content;
 let $fragmentoCompra = document.createDocumentFragment();
 
+//METODO QUE CREA LA VENTANA DE PAGO
 function generarFrameCompra(id){
 
     tarjetas.filter(item =>{
@@ -177,16 +189,4 @@ function generarFrameCompra(id){
 
         document.querySelector(".frame_pago").appendChild($fragmentoCompra)
     })
-}
-
-function limpiar(){
-    $frameCompra.querySelector("img").setAttribute("src", "")
-    $frameCompra.querySelector("img").setAttribute("alt", "")
-    $frameCompra.querySelector(".descripcion").textContent =""
-    $frameCompra.querySelector(".nombre").setAttribute("value", "")
-    $frameCompra.querySelector(".costo").setAttribute("value", "")
-    $frameCompra.querySelector(".iva").setAttribute("value", "")
-    $frameCompra.querySelector(".pago").setAttribute("value", "")
-
-    console.log($frameCompra)
 }

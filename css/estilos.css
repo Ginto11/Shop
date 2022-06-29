@@ -122,6 +122,7 @@ main{
     justify-content: center;
     align-items: center;
     gap: 30px;
+    margin-bottom: 30px;
 }
 
 
@@ -365,6 +366,12 @@ main{
 .contenedor__botones input:hover{
     background: #e00;
     color: yellow;
+}
+
+@media screen and (max-width: 1000px){
+    .contenedor__tarjetas{
+        width: 90%;
+    }
 }
 
 

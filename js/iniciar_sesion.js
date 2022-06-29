@@ -15,11 +15,11 @@ $formulario_Sesion.addEventListener("submit", e =>{
     const datos = new FormData($formulario_Sesion);
     const [correo, password] = [...datos.values()];
 
-    listaUsuarios.forEach(element =>{
+    listaUsuarios.filter(element =>{
         document.getElementById("correo").value = ""
         document.getElementById("password").value = ""
         if(element.correo == correo && element.password != password) return alert("Contraseña incorrecta");
-        if(element.correo == correo && element.password == password) return setTimeout("location.href = './productos.html'");
+        if(element.correo == correo && element.password == password) return setTimeout("location.href = './inicio.html'");
     })
 });
 
@@ -31,7 +31,7 @@ $formulario_Registro.addEventListener("submit", e =>{
 
     listaUsuarios.forEach(element =>{
         if(element.correo !== correo1){
-            
+
             document.getElementById("correo2").value = ""
             document.getElementById("password2").value = ""
             alert("Usuario registrado exitosamente")
