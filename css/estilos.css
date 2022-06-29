@@ -486,8 +486,6 @@ strong{
 @media screen and (max-width: 990px) {
     .frame_pago{
         display: flex;
-        height: 100vh;
-        overflow-y: scroll;
         gap: 0px;
         justify-content: space-around;
         align-items: center;
