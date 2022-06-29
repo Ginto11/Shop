@@ -21,6 +21,7 @@ class Tarjeta{
         $template.querySelector("h1").textContent = this.nombre;
         $template.querySelector("img").setAttribute("src", this.imagen);
         $template.querySelector("img").setAttribute("alt", "imagen");
+        /*$template.querySelector("img").style.filter = "drop-shadow(0 0 3px #600)";*/
         $template.querySelector("p").textContent = this.descripcion;
         $template.querySelector("h2").textContent = "Costo: " + this.costo
         $template.querySelector(".card").dataset.id = this.id
@@ -69,7 +70,9 @@ const card = [
     { nombre: "Maleta Rodante", img: "./img/maleta_rodante.png", costo: 300000, descripcion: "Maleta Rodante de color rojo, dos ruedas en pasta, y mango en pasta."},
     { nombre: "Impresora", img: "./img/impresora.png", costo: 200000, descripcion: "Impresora de color gris multifuncional, con escaner, fotocopiadora y con menu de botones."},
     { nombre: "Nevera", img: "./img/nevera.png", costo: 1200000, descripcion: "Nevera de color gris, con dispensador de agua, con refrigerador, con temperatura ajustable y 4 soportes."},
-    { nombre: "Tableta", img: "./img/tablet.png", costo: 800000, descripcion: "Tablet Lenovo con lapiz Tab P12 pro, pantalla de 12 pulgadas, y con sistema operativo android."}
+    { nombre: "Tableta", img: "./img/tablet.png", costo: 800000, descripcion: "Tablet Lenovo con lapiz Tab P12 pro, pantalla de 12 pulgadas, y con sistema operativo android."},
+    { nombre: "Teclado", img: "./img/teclado.png", costo: 60000, descripcion: "Teclado de color negro, alambrico, con leds de colores tipo Gamer Pro"},
+    { nombre: "Horno", img: "./img/horno.png", costo: 400000, descripcion: "Horno de color negro, con temperatura ajustable, tipo tostador, con 4 soportes y una bandeja"}
 ];
 
 
@@ -101,6 +104,31 @@ document.querySelector(".contenedor__tarjetas").appendChild($fragmento);
 
 // BLOQUE DE CODIGO QUE CREA LA INTERFAZ DE PAGO, DE ACUERDO A LA VALIDACION Y AL METODO
 let $overlay = document.querySelector(".overlay");
+
+/*document.addEventListener("mouseover", e =>{
+    if (e.target.matches("button")) {
+
+
+        let id = e.target.dataset.id
+
+        if (id === e.fromElement.dataset.id) {
+            e.fromElement.querySelector("img").classList.add("activar")
+        }
+    }
+})
+
+document.addEventListener("mouseout", e =>{
+    if (e.target.matches("button")) {
+
+        let id = e.target.dataset.id
+
+        if (id == e.fromElement.dataset.id) {
+            e.fromElement.querySelector("img").classList.remove("activar")
+        }
+    }
+})*/
+
+
 document.addEventListener("click", e =>{
     if(e.target.matches("button")){
         console.log($overlay)
@@ -170,7 +198,7 @@ function generarFrameCompra(id){
             console.log(item)
             console.log("encontrado")
             document.getElementById("ventana__compra").style.transform = "scale(0.7)";
-            document.getElementById("ventana__compra").style.transition = ".3s ease all"
+            document.getElementById("ventana__compra").style.transition = ".3s ease all";
             $frameCompra.querySelector("img").setAttribute("src", item.imagen)
             $frameCompra.querySelector("img").setAttribute("alt", item.nombre)
             $frameCompra.querySelector(".descripcion").textContent = item.descripcion
@@ -188,5 +216,16 @@ function generarFrameCompra(id){
         }
 
         document.querySelector(".frame_pago").appendChild($fragmentoCompra)
+    })
+}
+
+
+function Hover(id){
+
+    tarjetas.filter((item) =>{
+
+        if (item.id == id) {
+            document.querySelector("img").style.filter = "drop-shadow(0 0 3px #600)";
+        }
     })
 }
