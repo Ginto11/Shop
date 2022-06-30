@@ -586,6 +586,19 @@ strong{
         width: 30%;
     }
 
+}
 
 
+@media screen and (max-width: 450px){
+
+    .frame_pago{
+        display: flex;
+        margin: 25px 5%;
+        width: 90%;
+        gap: 0px;
+        justify-content: space-around;
+        align-items: center;
+        overflow-y: hidden;
+        font-size: 13px;
+    }
 }
