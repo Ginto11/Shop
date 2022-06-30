@@ -52,14 +52,6 @@ $btnRegistro.addEventListener("click", ()=>{
 const btn = document.getElementById("btn__cambiar--color");
 
 
-btn.addEventListener("click", ()=>{
-    btn.classList.toggle("icon-sol");
-    btn.classList.toggle("icon-luna")
-    if(btn.classList.contains("icon-sol")){
-        cambiarColorDiaSoleado();
-    }
-});
-
 $btnLogearme.addEventListener("click", ()=>{
     crearFrameLogin()
 })
