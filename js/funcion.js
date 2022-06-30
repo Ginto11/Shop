@@ -130,7 +130,7 @@ document.addEventListener("mouseout", e =>{
 
 
 document.addEventListener("click", e =>{
-    if(e.target.matches("button")){
+    if(e.target.className == "btn__comprar"){
         console.log($overlay)
         document.querySelector(".overlay").style.display = "block";
         let id = e.target.dataset.id;
@@ -216,16 +216,5 @@ function generarFrameCompra(id){
         }
 
         document.querySelector(".frame_pago").appendChild($fragmentoCompra)
-    })
-}
-
-
-function Hover(id){
-
-    tarjetas.filter((item) =>{
-
-        if (item.id == id) {
-            document.querySelector("img").style.filter = "drop-shadow(0 0 3px #600)";
-        }
     })
 }

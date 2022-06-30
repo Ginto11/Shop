@@ -274,8 +274,8 @@ main{
 }
 
 .frame_pago {
-    margin: 40px 20%;
-    width: 60%;
+    margin: 50px 10%;
+    width: 80%;
     height: 500px;
     background: #fff;
     text-align: center;
@@ -483,13 +483,81 @@ strong{
     filter: drop-shadow(0 0 3px #f00);
 }
 
+.icon-menu {
+    background: transparent;
+    color: White;
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+    border: none;
+}
+
+.icon-cross{
+    color: #f00;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px;
+    border: none;
+}
+
+.menu-responsive{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.link-menu{
+    padding: 30px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+
+.link-menu:link{
+    text-decoration: none;
+}
+
+.link-menu:visited{
+    color: #fff;
+}
+
+.link-menu:active{
+    background: #f00;
+}
+
+.sacar-menu{
+    opacity: 1;
+    visibility: visible;
+    transition: .4s ease-in-out all;
+}
+
+
+
 @media screen and (max-width: 990px) {
+
     .frame_pago{
         display: flex;
         gap: 0px;
         justify-content: space-around;
         align-items: center;
-        font-size: 10px;
+        font-size: 13px;
+    }
+
+    .icon-menu{
+        display: block;
     }
 
     .contenedor__links1{
@@ -498,11 +566,11 @@ strong{
 
     .frame_pago .contenedor__datos, .contenedor__botones {
         width: 90%;
-        gap: 20px;
+        gap: 15px;
     }
 
     .frame_pago .contenedor__elemento{
-        gap: 30px;
+        gap: 15px;
     }
 
     .frame_pago .contenedor__elemento figure{
