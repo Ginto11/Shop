@@ -490,8 +490,8 @@ strong{
 }
 
 .menu-responsive{
-    position: absolute;
     width: 100%;
+    position: absolute;
     height: 100vh;
     top: 0;
     left: 0;
@@ -507,8 +507,8 @@ strong{
 
 .link-menu{
     padding: 30px;
-    display: inline-block;
-    width: 100%;
+    display: block;
+    width: 83%;
     text-align: center;
 }
 
