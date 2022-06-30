@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 body{
     background-color: #dfdfdf;
+    overflow-x: hidden;
 }
 
 body::-webkit-scrollbar{
@@ -250,7 +251,7 @@ main{
     border-radius: 50%;
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 30px;
 }
 
 .overlay {
@@ -548,6 +549,10 @@ strong{
 
 @media screen and (max-width: 990px) {
 
+    body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
     .frame_pago{
         display: flex;
         gap: 0px;
