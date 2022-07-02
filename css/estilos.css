@@ -41,6 +41,8 @@ main{
 }
 
 
+
+
 .contenedor__links1{
     display: flex;
     justify-content: flex-start;
@@ -115,7 +117,7 @@ main{
 .card{
     width: 300px;
     height: 440px;
-    background-color: #000;
+    background-color: #fff;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -126,9 +128,8 @@ main{
 
 .titulo{
     text-align: center;
-    color: yellow;
+    color: #000;
     width: 90%;
-    background-color: #fff2;
     border-radius: 10px;
 }
 
@@ -153,25 +154,37 @@ main{
 }
 
 .costo{
-    color: #fff;
+    color: #000;
     text-align: center;
 }
 
 .btn__comprar{
     width: 90%;
     height: 30px;
-    background-color: #f00;
+    background-color: #000;
     border-radius: 10px;
     border: none;
     color: yellow;
     font-size: 20px;
     cursor: pointer;
     user-select: none;
+    box-shadow: 0 0 3px rgb(124, 122, 122);
+}
+
+.btn__comprar:hover{
+    color: #00FFD4;
+}
+
+.sesion-index{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenedor__registro{
     background-color: #000;
-    width: 400px;
+    width: 35%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -351,6 +364,25 @@ main{
     gap: 10px;
 }
 
+.contenedor__icons{
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.contenedor__icono {
+    width: 120px;
+}
+
+.contenedor__icono img{
+    width: 100%;
+    object-fit: contain;
+}
+
+.css {
+    width: 88px;
+}
+
 .contenedor__valores label {
     width: 90%;
     text-align: left;
@@ -408,7 +440,7 @@ main{
 
 .seccion{
   width: 70%;
-  background: #efefef;
+  background: #fff;
   color: #777;
   padding: 30px;
   border-radius: 5px;
@@ -479,7 +511,7 @@ strong{
     border: none;
 }
 
-.icon-cross{
+.cerrar-menu{
     color: #f00;
     background: transparent;
     position: absolute;
@@ -495,21 +527,30 @@ strong{
     height: 100vh;
     top: 0;
     left: 0;
-    background: #000;
+    background: #000e;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     opacity: 0;
+    box-shadow: 0 0 20px /*#00FFD4*/ red inset;
     visibility: hidden;
+    font-size: 20px;
 }
 
 .link-menu{
-    padding: 30px;
+    padding: 20px;
     display: block;
-    width: 83%;
+    width: 60%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link-menu img {
+    margin-right: 10px;
 }
 
 
@@ -528,9 +569,19 @@ strong{
 .sacar-menu{
     opacity: 1;
     visibility: visible;
-    transition: .4s ease-in-out all;
+    transition: .5s ease all;
+    position: fixed;
 }
 
+.li-objetivos{
+    margin-left: 40px;
+}
+
+@media screen and (max-width: 1024px){
+    .contenedor__tarjetas{
+        width: 100%;
+    }
+}
 
 
 @media screen and (max-width: 990px) {
@@ -546,6 +597,20 @@ strong{
         overflow-y: hidden;
         font-size: 13px;
     }
+
+
+    .seccion{
+        font-size: 13px;
+    }
+
+    .li-objetivos {
+        margin-left: 15px;
+    }
+
+    .margen-texto {
+        margin: 0;
+    }
+
 
     .icon-menu{
         display: block;
@@ -586,6 +651,10 @@ strong{
         width: 30%;
     }
 
+    .contenedor__tarjetas {
+        width: 90%;
+    }
+
 }
 
 
@@ -600,5 +669,31 @@ strong{
         align-items: center;
         overflow-y: hidden;
         font-size: 13px;
+    }
+
+    .contenedor__registro{
+        width: 90%;
+        margin: 0;
+    }
+
+
+    .seccion {
+        width: 80%;
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+
+    .margen-texto{
+        margin: 0;
+    }
+}
+
+@media screen and (width: 768px) {
+    .frame_pago{
+        margin: 10px 20%;
+    }
+
+    .contenedor__registro{
+        width: 50%;
     }
 }
