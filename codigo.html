@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="icon" href="./icons/red-mundial.png" />
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/arriba.js"></script>
+  <title>Codigo</title>
+</head>
+<body>
+
+    <span class="ir__arriba icon-flecha_arriba"></span>
+
+    <main>
+
+    <!-- TODO: Hacer las siguientes paginas acerca de, contacto -->
+        <header class="cabecera">
+            <h1 class="titulo__cabecera">Shop</h1>
+            <div class="contenedor__links1">
+                <a href="inicio.html">
+                    <img style="width: 25px;" src="./icons/inicio.png" alt="">
+                    Inicio
+                </a>
+                <a href="productos.html">
+                    <img style="width: 25px;" src="./icons/bolsa-de-la-compra.png" alt="">
+                    Productos
+                </a>
+                <a href="contacto.html">
+                    <img style="width: 25px;" src="./icons/comunicar.png" alt="">
+                    Contacto
+                </a>
+                <a href="codigo.html">
+                    <img style="width: 25px;" src="./icons/codigo.png" alt="">
+                    Codigo
+                </a>
+                <a href="index.html">
+                    <img style="width: 25px;" src="./icons/cerrar-sesion.png" alt="">
+                    Salir
+                </a>
+                <!-- <button id="btnAgregar">Agregar</button> -->
+            </div>
+
+            <button  class="icon icon-menu boton-menu" type="button" name="button"></button>
+
+        </header>
+        <div class="menu-responsive">
+            <button class="cerrar-menu">
+                <img src="./icons/boton.png" alt="">
+            </button>
+            <a class="link-menu" href="inicio.html">
+                <img style="width: 25px;" src="./icons/inicio.png" alt="">
+                Inicio
+            </a>
+            <a class="link-menu" href="productos.html">
+                <img style="width: 25px;" src="./icons/bolsa-de-la-compra.png" alt="">
+                Productos
+            </a>
+            <a class="link-menu" href="contacto.html">
+                <img style="width: 25px;" src="./icons/comunicar.png" alt="">
+                Contacto
+            </a>
+            <a class="link-menu" href="">
+                <img style="width: 25px;" src="./icons/codigo.png" alt="">
+                Codigo
+            </a>
+            <a class="link-menu" href="index.html">
+                <img style="width: 25px;" src="./icons/cerrar-sesion.png" alt="">
+                Salir
+            </a>
+        </div>    
+
+        <section class="seccion">
+            <article class="articulo">
+
+                <h2>Codigo del sitio Web</h2>
+                <p class="margen-texto">
+                    En esta seccion explicare partes importantes del codigo, ya que muchos pensaran, que no es muy dificil
+                    hacer un sitio web, pero el echo de hacerlo, implica tener el rol de <strong>Diseñador UI</strong>,
+                    , <strong>Desarrollador Frontend</strong> y <strong>Maquetador Web</strong>. Y no solo esto si no toda
+                    la logica que hay por detras, por ejemplo el inicio de sesion, o al crear la interfaz de compra, para crear
+                    ese tipo de cosas, se utiliza cierta logica que hay que tener. Y eso es lo que estare explicando en esta seccion.
+                </p>
+
+            </article>
+
+            <article class="articulo">
+
+                <h2>Inicio del Proyecto</h2>
+                <p class="margen-texto">
+                    Inicialmente cree la pagina de Productos, solo estaba haciendo unas pruebas acerca de como crear tarjetas,
+                    de forma dinamica, ¿Que quiere decir dinamica?, significa que uno no pone la informacion, si no que trae
+                    la informacion y apartir de eso, se crean automaticamente las tarjetas. Haciendo que todo sea mucho mas practico.
+                    La idea es que esa informacion sea cargada, por ejemplo de una api, una base de datos, etc. Pero en este proyecto,
+                    fue el caso, en este proyecto se utilizaron arrays para la manipulacion de la informacion, el array tenia cada uno
+                    de los objetos adentro, y cada objeto tenia la informacion de una sola tarjeta.
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/codigo-array.png" alt="Codigo de Imagin">
+                    <figcaption>
+                        Array con informacion de cada tarjeta
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+
+                <p class="margen-texto">
+                    Ya esta la informacion en un array, ahora falta crear las plantillas de las tarjetas, para que a partir de codigo
+                    javascript, se cree cada una de las tarjetas, el <strong>template</strong> tiene un id, al cual llamamos por medio de codigo
+                    , pero no queremos el template, si no su contendio por eso se le pone la propiedad (.content).
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/plantila-tarjetas.png" alt="Imagen">
+                    <figcaption>
+                        Plantilla de cada Tarjeta
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+
+                <p class="margen-texto">
+                    Ahora lo que sigue es iterar sobre el array <strong>card</strong> y por cada elemento que esta en ese array
+                    se va a crear cada tarjeta, de acuerdo al bloque de codigo correspondiente, pero agi entra un tema que no se ha visto y es
+                    la <strong>Programacion Orientada a Objetos</strong>, <strong>(POO)</strong>, este es un paradigma de programacion, que
+                    parte de consepto de "Objetos", es decir cada objeto tiene sus atributos y metodos. Utilice este paradigma para crear
+                    cada unas de las tarjetas, con sus correspondientes atributos y metodos.
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/class-tarjeta.png" alt="Imagen">
+                    <figcaption>
+                        Clase Tarjeta y su Constructor
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+                <p class="margen-texto">
+                    Inicialmenete se queria hacer el proceso sin usar <strong>POO</strong>, pero la cuestion es que se necesitaba crearle
+                    un id a cada tarjeta, por ende recurri a la <strong>Programacion Orientada a Objetos</strong>, como se ve en la imagen
+                    tiene un atributo id que esta inicializado en 0, ¿Que pasa con ese id?, cada vez que se crea un Objeto, siempre se llama
+                    al constructor de la clase, es decir, si se crean tres Objetos de tipo Tarjeta, a la final se van a tener 3 tarjetas con
+                    diferentes id, ya que como se ve en el codigo del constructor, la Clase tarjeta tiene un atributo estatico, y cada
+                    vez que se crea un Objeto, este id aumenta en uno que seria este codigo <strong>(this.id = Tarjeta.id; Tarjeta.id++;)</strong>.
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/metodo-tarjetas.png" alt="Imagen">
+                    <figcaption>
+                        Clase Tarjeta y su Metodo crearTarjetas()
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+                <p class="margen-texto">
+                    En este metodo, esta el template, que se define asi: <strong>$template = document.getElementById("template").content</strong>,
+                    que ya se habia explicado que se le ponia la propieda content, para acceder al contenido, ahora adentro del metod se llama
+                    al $template y para buscar adentro del template se usa el metodo <strong>(querySelector())</strong>, como se ve en la imagen
+                    y el selector o lo que se este buscando debe estar adentro de la plantilla, la cual ya se mostro anteriormente.
+                </p>
+                <p class="margen-texto">
+                    En la imagen se ve que se le asignan valores de variables a cada uno de los elementos de la plantilla, es decir, al crear
+                    el objeto, se le pasan como parametros, <strong>(Los parametros son los que estan entre parentesis en el constructor de la clase)</strong>
+                     los valores de cada uno de los datos del array <strong>card</strong>, para que
+                    por medio del metodo cree cada una de las tarjetas, algo que toca hacer cuando se estan creando elementos asi, es crear un
+                    clon y pasarselo al fragmento, que posteriormente el fragmento es el que se añade al <strong>DOM (Document Object Model)</strong>.
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/for.png" alt="Imagen">
+                    <figcaption>
+                        Bucle for que crea cada una de las tarjetas
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+                <p class="margen-texto">
+                    Ya estan añadidas las tarjetas al <strong>DOM</strong>, pero no es solo decir ya estan añadidas y ya, si no que van
+                    cosas de mano, como por ejemplo los estilos, estos se añaden por medio de una etiqueta <strong> link </strong>, que esta
+                    en el head de la pagina.
+                </p>
+                <figure class="tarjeta-figure margen-texto">
+                    <img class="imagen" src="./codigo-img/head.png" alt="Imagen">
+                    <figcaption>
+                        Head de la pagina
+                        <img src="./icons/edicion-de-imagen.png" alt="Icono">
+                    </figcaption>
+                </figure>
+                <p class="margen-texto">
+                    Y asi se crearia las tarjetas...
+                </p>
+            </article>
+
+            <article class="articulo">
+                <h2>Menu de Navegacion</h2>
+                <p class="margen-texto">
+                    Para crear el encabezado negro, lo primero que busco es el buen posicionamiento, por ejemplo ese centrado y distancia
+                    que tiene cada elemento se hace con una propieda en especifica llamada <strong>FlexBox</strong>, puse el titulo y despues
+                    puse una caja con cada uno de los link, haciendo que en el encabezado hayan dos elementos, lo que permite mejor posicionamiento
+                </p>
+                <p class="margen-texto">
+                    Al header se le aplica una propieda llamada <strong>display: flex;</strong>, eso hace todos los elementos se vayan hacia
+                    el lado derecho de la pagina, pero todavia no estan separados, para separarlos por partes iguales, se le aplica al <strong>header</strong>
+                    la propiedad <strong>justify-content: space-around;</strong>, esto permite que cada elemento tenga una distancia igual
+                    en cada lado.
+                </p>
+                <p class="margen-texto">
+                    Ya estan los dos elementos separados, el titulo, de la caja de los link, pero siguen los link, estos estan hacia el lado
+                    derecho de la pagina, pero no tienen estilo ni nada, solo estan pegados, bueno pues lo que se  hace es basicamente lo mismo
+                    que en el header, se le pone la propiedad <strong>display: flex;</strong> y se le pone la propiedad <strong>gap: 30px;</strong>
+                    que es una separacion que uno mismo pone la medida.
+                </p>
+            </article>
+
+        </section>
+    </main>
+</body>
+</html>

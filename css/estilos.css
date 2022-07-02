@@ -55,7 +55,7 @@ main{
     color: yellow;
     text-decoration: none;
     background-color: #fff2;
-    width: 100px;
+    width: 120px;
     height: 30px;
     display: flex;
     justify-content: center;
@@ -70,6 +70,10 @@ main{
 
 .contenedor__links1 a:hover{
     color: #00FFD4;
+}
+
+.contenedor__links1 a img {
+    margin-right: 10px;
 }
 
 .registrarse, .logearme{
@@ -556,6 +560,7 @@ strong{
 
 .link-menu:link{
     text-decoration: none;
+    color: #fff;
 }
 
 .link-menu:visited{
@@ -671,6 +676,11 @@ strong{
         font-size: 13px;
     }
 
+    .tarjeta-figure figcaption {
+
+        font-size: 10px;
+    }
+
     .contenedor__registro{
         width: 90%;
         margin: 0;
@@ -696,4 +706,39 @@ strong{
     .contenedor__registro{
         width: 50%;
     }
+}
+
+
+/* ESTILOS DE LA PAGINA DE CODIGO */
+
+
+.tarjeta-figure{
+    max-width: 500px;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 0 3px black;
+}
+
+.tarjeta-figure figcaption {
+    height: 40px;
+    background: transparent;
+    text-align: right;
+    color: yellow;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+figcaption {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+
+
+.imagen {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
