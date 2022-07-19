@@ -1,8 +1,13 @@
 import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $template = document.getElementById("template").content
 const $fragmento = document.createDocumentFragment();
+let contenedorFactura = document.createElement("div");
+let factura =  document.createElement("div");
 //  EN ESTE ARRAY SE GUARDAN LAS TARJETAS
 const tarjetas = []
+let facturas = []
+let compras = 0;
+
 
 class Tarjeta{
     static id = 0
@@ -130,8 +135,11 @@ document.addEventListener("mouseout", e =>{
 
 document.addEventListener("click", e =>{
     if(e.target.className == "btn__comprar"){
-        console.log($overlay)
+        if(compras === 9){
+            return alert("Tines que ser VIP para poder hacer mas de 9 Compras")
+        }
         document.querySelector(".overlay").style.display = "block";
+
         let id = e.target.dataset.id;
         generarFrameCompra(id);
 
@@ -152,22 +160,133 @@ document.addEventListener("click", e =>{
             $("#borrar").remove()
             document.querySelector("body").removeChild($overlay)
         } catch (error) {
-            console.log("Error en el " + error)
         }
         let nuevoOverlay = document.createElement("div");
-        nuevoOverlay.classList.add("overlay")
-        nuevoOverlay.classList.add("inactive")
-        nuevoOverlay.setAttribute("id", "borrar")
+        propiedadesNuevoOverlay(nuevoOverlay);
 
         let nuevoTemplate = document.createElement("div")
-        nuevoTemplate.classList.add("frame_pago")
-        nuevoTemplate.setAttribute("id", "ventana__compra")
+        propiedadesNuevoTemplate(nuevoTemplate)
 
         nuevoOverlay.appendChild(nuevoTemplate)
         document.body.appendChild(nuevoOverlay)
         alert("Has cancelado la compra")
     }
-})
+    //VALIDACION PARA REALIZAR EL PAGO
+    else if(e.target.className === "realizar__pago"){
+
+        try {
+            $("#borrar").remove()
+            document.querySelector("body").removeChild($overlay)
+        } catch (error) {
+        }
+        let nuevoOverlay = document.createElement("div");
+        propiedadesNuevoOverlay(nuevoOverlay);
+
+        let nuevoTemplate = document.createElement("div")
+        propiedadesNuevoTemplate(nuevoTemplate)
+
+        nuevoOverlay.appendChild(nuevoTemplate)
+        document.body.appendChild(nuevoOverlay)
+
+        let idPago = e.target.dataset.id;
+        tarjetas.filter((item) => {
+            if(item.id == idPago){
+                facturas.push({
+                    id: item.id,
+                    nombre: item.nombre,
+                    iva: item.costo * 0.19,
+                    costo: item.costo,
+                    subtotal: (item.costo * 0.19) + item.costo,
+                    fecha: obtenerFecha() })
+
+                console.log(facturas)
+            }
+
+        });
+        compras++;
+        alert("Has realizado el pago")
+    }
+
+    else if(e.target.className == "factura"){
+        e.preventDefault()
+        if (compras === 0) {
+            return alert("No has realizado ninguna compra")
+        }
+
+        console.log("Estas en la factura")
+        //crearFrameFactura()
+        document.querySelector(".num").innerHTML = `${Math.round(Math.random() * 10000)}`;
+        document.getElementById("fecha").innerHTML = `${obtenerFecha()}`;
+        document.querySelector(".contenedor__factura--tabla").innerHTML = `
+            <table class="tabla">
+                    <tr>
+                        <th> Referencia </th>
+                        <th> Articulo </th>
+                        <th> Iva </th>
+                        <th> Costo </th>
+                    </tr>
+                    ${crearTabla()}
+                    <tr class="ultima">
+                        <td class="sin__border"> </td>
+                        <td class="sin__border"> </td>
+                        <td> Total Iva </td>
+                        <td>
+
+                                ${totalIva()}
+
+                        </td>
+                    </tr>
+                    <tr class="ultima">
+                        <td class="sin__border"> </td>
+                        <td class="sin__border"> </td>
+                        <td> Subtotal </td>
+                        <td>
+                                ${subtotal()}
+                        </td>
+                    </tr>
+                    <tr class="ultima">
+                        <td class="sin__border"> </td>
+                        <td class="sin__border"> </td>
+                        <td> Pago Neto </td>
+                        <td>
+                                ${traerTotal()}
+                        </td>
+                    </tr>
+                </table>
+        `
+        document.body.style.overflowY = "hidden";
+        document.getElementById("contenedor__factura").style.display = "block"
+        document.getElementById("contenedor__factura").style.display = "flex"
+    }
+
+    else if(e.target.className == "cancelar__impresion"){
+        let contenedorFactura = document.getElementById("contenedor__factura")
+        document.body.style.overflowY = "scroll"
+        document.body.removeChild(contenedorFactura)
+    }
+});
+
+
+function obtenerFecha(){
+    const fecha = new Date();
+    let mes = fecha.getUTCMonth() + 1;
+    let dia = fecha.getUTCDate();
+    let ano = fecha.getUTCFullYear();
+    const fechaActual = `${dia}/${mes}/${ano}`;
+    return fechaActual
+}
+
+function propiedadesNuevoOverlay(nuevoOverlay){
+    nuevoOverlay.classList.add("overlay")
+    nuevoOverlay.classList.add("inactive")
+    nuevoOverlay.setAttribute("id", "borrar")
+};
+
+function propiedadesNuevoTemplate(nuevoTemplate){
+    nuevoTemplate.classList.add("frame_pago")
+    nuevoTemplate.setAttribute("id", "ventana__compra")
+}
+
 
 /* document.getElementById("btnAgregar").addEventListener("click", ()=>{
     nombre = prompt("ingrese el nombre")
@@ -194,8 +313,6 @@ function generarFrameCompra(id){
     tarjetas.filter(item =>{
 
         if(item.id == id){
-            console.log(item)
-            console.log("encontrado")
             document.getElementById("ventana__compra").style.transform = "scale(0.7)";
             document.getElementById("ventana__compra").style.transition = ".3s ease all";
             $frameCompra.querySelector("img").setAttribute("src", item.imagen)
@@ -205,6 +322,7 @@ function generarFrameCompra(id){
             $frameCompra.querySelector(".costo").setAttribute("value", item.costo)
             $frameCompra.querySelector(".iva").setAttribute("value", item.costo * 0.19)
             $frameCompra.querySelector(".pago").setAttribute("value", (item.costo * 0.19) + item.costo)
+            $frameCompra.querySelector(".realizar__pago").dataset.id = item.id
 
             setTimeout(()=>{
                 document.getElementById("ventana__compra").style.transform = "scale(1)";
@@ -216,4 +334,245 @@ function generarFrameCompra(id){
 
         document.querySelector(".frame_pago").appendChild($fragmentoCompra)
     })
+}
+
+function crearFrameFactura(){
+    contenedorFactura.classList.add("contenedor__factura")
+    contenedorFactura.style.width = "100%";
+    contenedorFactura.style.height = "100vh";
+    contenedorFactura.style.background = "white";
+    contenedorFactura.style.position = "fixed";
+    contenedorFactura.style.top = "0";
+    contenedorFactura.style.bottom = "0";
+    contenedorFactura.style.left = "0";
+    contenedorFactura.style.rigth = "0";
+    contenedorFactura.style.display = "flex"
+    contenedorFactura.style.justifyContent = "center";
+    contenedorFactura.style.alignItems = "center";
+
+    factura.classList.add("mi__factura")
+    factura.style.width = "70%";
+    factura.style.height = "550px";
+    factura.style.padding = "20px";
+    factura.style.background = "white";
+    factura.style.boxShadow = " 0 0 10px black";
+    factura.style.borderRadius = "10px";
+    factura.style.display = "flex";
+    factura.style.transform = "scale(0.7)"
+    factura.style.transition = ".7s ease all";
+    factura.style.flexDirection = "column";
+    factura.style.justifyContent = "space-around";
+
+    let encabezado = document.createElement("div");
+    encabezado.style.display = "flex";
+    encabezado.style.justifyContent = "space-between"
+
+    let numFactura = document.createElement("h2");
+    numFactura.innerHTML = `
+        Factura de Venta No: ${Math.round(Math.random() * 10000) }
+    `
+
+    let titulo = document.createElement("h1");
+    titulo.textContent = "Mi Factura";
+
+    let datosEmpresa = document.createElement("div");
+    datosEmpresa.setAttribute("class", "contenedor__factura--datos")
+    datosEmpresa.style.width = "100%";
+    datosEmpresa.innerHTML = `
+        <p>Empresa: Shop</p>
+        <p>Nit: 800.756.321 -1 </p>
+        <p>Fecha: ${obtenerFecha()}</p>
+        <p>Ciudad: Bogota D.C </p>
+        <p>Direccion: Calle 72 # 68 - 25</p>
+        <table class="tabla">
+            <tr>
+                <th> Referencia </th>
+                <th> Articulo </th>
+                <th> Iva </th>
+                <th> Costo </th>
+            </tr>
+            ${crearTabla()}
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Total Iva </td>
+                <td> ${totalIva()} </td>
+            </tr>
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Subtotal </td>
+                <td> ${subtotal()} </td>
+            </tr>
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Pago Neto </td>
+                <td> ${traerTotal()} </td>
+            </tr>
+        </table>
+    `;
+
+    let contenedor__btn = document.createElement("div");
+    contenedor__btn.innerHTML = `
+        <div class="contenedor__btns">
+            <button class="cancelar__impresion">Cancelar</button>
+            <button class="imprimir">Imprimir</button>
+        </div>
+    `
+
+    factura.appendChild(encabezado);
+    encabezado.appendChild(titulo);
+    encabezado.appendChild(numFactura);
+    factura.appendChild(datosEmpresa)
+    factura.appendChild(contenedor__btn)
+
+    setTimeout(()=>{
+        factura.style.transform = "scale(1)"
+    }, 100)
+
+    contenedorFactura.appendChild(factura);
+    document.body.style.overflowY = "hidden"
+    document.body.appendChild(contenedorFactura)
+}
+
+
+function crearTabla(){
+    let lista = ""
+    facturas.forEach((item) => {
+        lista += `
+            <tr>
+                <td> ${item.id} </td>
+                <td> ${item.nombre} </td>
+                <td> ${item.iva} </td>
+                <td> ${item.costo} </td>
+            </tr>
+        `
+    });
+
+    return lista
+}
+
+function totalIva(){
+    let total = 0;
+    facturas.forEach((item) => {
+        total += item.iva;
+    });
+    return total
+}
+
+function subtotal(){
+    let total = 0;
+    facturas.forEach((item) => {
+        total += item.costo;
+    });
+    return total
+}
+
+function traerTotal(){
+    let valorTotal = 0;
+    facturas.forEach((item) => {
+        valorTotal += item.subtotal;
+    });
+    return valorTotal;
+}
+
+function crearFrameFactura2(contenedorNuevo, facturaNueva){
+    contenedorNuevo.classList.add("contenedor__factura")
+    contenedorNuevo.style.width = "100%";
+    contenedorNuevo.style.height = "100vh";
+    contenedorNuevo.style.background = "white";
+    contenedorNuevo.style.position = "fixed";
+    contenedorNuevo.style.top = "0";
+    contenedorNuevo.style.bottom = "0";
+    contenedorNuevo.style.left = "0";
+    contenedorNuevo.style.rigth = "0";
+    contenedorNuevo.style.display = "flex"
+    contenedorNuevo.style.justifyContent = "center";
+    contenedorNuevo.style.alignItems = "center";
+
+    facturaNueva.classList.add("mi__factura")
+    facturaNueva.style.width = "70%";
+    facturaNueva.style.height = "550px";
+    facturaNueva.style.padding = "20px";
+    facturaNueva.style.background = "white";
+    facturaNueva.style.boxShadow = " 0 0 10px black";
+    facturaNueva.style.borderRadius = "10px";
+    facturaNueva.style.display = "flex";
+    facturaNueva.style.transform = "scale(0.7)"
+    facturaNueva.style.transition = ".7s ease all";
+    facturaNueva.style.flexDirection = "column";
+    facturaNueva.style.justifyContent = "space-around";
+
+    let encabezado = document.createElement("div");
+    encabezado.style.display = "flex";
+    encabezado.style.justifyContent = "space-between"
+
+    let numFactura = document.createElement("h2");
+    numFactura.innerHTML = `
+        Factura de Venta No: ${Math.round(Math.random() * 10000) }
+    `
+
+    let titulo = document.createElement("h1");
+    titulo.textContent = "Mi Factura";
+
+    let datosEmpresa = document.createElement("div");
+    datosEmpresa.setAttribute("class", "contenedor__factura--datos")
+    datosEmpresa.style.width = "100%";
+    datosEmpresa.innerHTML = `
+        <p>Empresa: Shop</p>
+        <p>Nit: 800.756.321 -1 </p>
+        <p>Fecha: ${obtenerFecha()}</p>
+        <p>Ciudad: Bogota D.C </p>
+        <p>Direccion: Calle 72 # 68 - 25</p>
+        <table class="tabla">
+            <tr>
+                <th> Referencia </th>
+                <th> Articulo </th>
+                <th> Iva </th>
+                <th> Costo </th>
+            </tr>
+            ${crearTabla()}
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Total Iva </td>
+                <td> ${totalIva()} </td>
+            </tr>
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Subtotal </td>
+                <td> ${subtotal()} </td>
+            </tr>
+            <tr class="ultima">
+                <td class="sin__border"> </td>
+                <td class="sin__border"> </td>
+                <td> Pago Neto </td>
+                <td> ${traerTotal()} </td>
+            </tr>
+        </table>
+    `;
+
+    let contenedor__btn = document.createElement("div");
+    contenedor__btn.innerHTML = `
+        <div class="contenedor__btns">
+            <button class="cancelar__impresion">Cancelar</button>
+            <button class="imprimir">Imprimir</button>
+        </div>
+    `
+
+    facturaNueva.appendChild(encabezado);
+    encabezado.appendChild(titulo);
+    encabezado.appendChild(numFactura);
+    facturaNueva.appendChild(datosEmpresa)
+    facturaNueva.appendChild(contenedor__btn)
+
+    setTimeout(()=>{
+        facturaNueva.style.transform = "scale(1)"
+    }, 100)
+
+    contenedorNuevo.appendChild(facturaNueva);
+    document.body.style.overflowY = "hidden"
+    document.body.appendChild(contenedorNuevo)
 }

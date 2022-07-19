@@ -3,6 +3,8 @@ const $formulario_Registro = document.getElementById("formulario__registro");
 const $formulario_Sesion = document.getElementById("formulario__sesion");
 const $btnRegistro = document.getElementById("btn__registrarse")
 const $btnLogearme = document.getElementById("btn__logearse");
+const $btnRegistrarme2 = document.getElementById("btn__registrarse2");
+const $btnLogearme2 = document.getElementById("btn__logearme2");
 
 const listaUsuarios = [
     { correo: "empresanvs@gmail.com", password: 1001944317 }
@@ -47,12 +49,21 @@ $formulario_Registro.addEventListener("submit", e =>{
 
 $btnRegistro.addEventListener("click", ()=>{
     crearFrameRegistro()
-})
+});
 
-const btn = document.getElementById("btn__cambiar--color");
 
 
 $btnLogearme.addEventListener("click", ()=>{
+    crearFrameLogin()
+});
+
+$btnRegistrarme2.addEventListener("click", (e)=>{
+    e.preventDefault()
+    crearFrameRegistro()
+});
+
+$btnLogearme2.addEventListener("click", (e)=>{
+    e.preventDefault();
     crearFrameLogin()
 })
 

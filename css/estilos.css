@@ -586,6 +586,10 @@ strong{
     .contenedor__tarjetas{
         width: 100%;
     }
+
+    .contenedor__registro{
+        width: 40%;;
+    }
 }
 
 
@@ -594,6 +598,10 @@ strong{
     body {
         overflow-x: hidden;
     }
+
+    .contenedor__registro{
+        width: 60%;
+    }
     .frame_pago{
         display: flex;
         gap: 0px;
@@ -601,6 +609,10 @@ strong{
         align-items: center;
         overflow-y: hidden;
         font-size: 13px;
+    }
+
+    .contenedor__registro{
+        width: 40%;;
     }
 
 
@@ -661,6 +673,26 @@ strong{
     }
 
 }
+@media screen and (max-width: 768px) {
+    .frame_pago{
+        margin: 10px 20%;
+    }
+
+    .contenedor__registro{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 672px) {
+    .frame_pago{
+        margin: 10px 20%;
+    }
+
+    .contenedor__registro{
+        width: 70%;
+    }
+}
+
 
 
 @media screen and (max-width: 450px){
@@ -698,16 +730,6 @@ strong{
     }
 }
 
-@media screen and (width: 768px) {
-    .frame_pago{
-        margin: 10px 20%;
-    }
-
-    .contenedor__registro{
-        width: 50%;
-    }
-}
-
 
 /* ESTILOS DE LA PAGINA DE CODIGO */
 
@@ -741,4 +763,85 @@ figcaption {
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+
+
+
+
+.inactive__contenedor--factura {
+    display: none;
+}
+
+.contenedor__factura {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+.mi__factura {
+    height: 500px;
+    padding: 20px;
+    width: 70%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.contenedor__encabezado{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenedor__encabezado h1{
+    color: red;
+    text-decoration: underline;
+}
+
+.tabla{
+    width: 100%;
+    border: 3px solid #000;
+}
+
+.tabla tbody {
+    text-align: center;
+}
+
+.tabla th {
+    border: 2px solid #000;
+    background: rgb(121, 182, 210);
+}
+
+.ultima td {
+    border: 2px solid #000;
+    text-align:center;
+    background: rgb(157, 201, 157);
+}
+
+.ultima .sin__border {
+    border-color: #fff;
+    background: #fff;
+}
+
+.contenedor__btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+}
+.contenedor__btns button{
+    height: 30px;
+    width: 10%;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
 }

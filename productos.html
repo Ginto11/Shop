@@ -40,6 +40,7 @@
                     <img style="width: 25px;" src="./icons/cerrar-sesion.png" alt="">
                     Salir
                 </a>
+
                 <!-- <button id="btnAgregar">Agregar</button> -->
             </div>
 
@@ -130,6 +131,29 @@
                 <input class="realizar__pago" type="submit" value="Pagar">
             </div>
         </template>
+    </div>
+
+    <div id="contenedor__factura" class="contenedor__factura" style="display: none;">
+        <div class="mi__factura">
+            <div class="contenedor__encabezado">
+                <h1>Mi factura</h1>
+                <h2>Factura de venta No: <span class="num">></span> </h2>
+            </div>
+            <div class="contenedor__factura--datos">
+                <p>Empresa: Shop</p>
+                <p>Nit: 800.756.321 -1 </p>
+                <p>Fecha: <span id="fecha"></span> </p>
+                <p>Ciudad: Bogota D.C </p>
+                <p>Direccion: Calle 72 # 68 - 25</p>
+            </div>
+            <div class="contenedor__factura--tabla">
+
+            </div>
+            <div class="contenedor__btns">
+                <button class="cancelar__impresion">Cancelar</button>
+                <button class="imprimir">Imprimir</button>
+            </div>
+        </div>
     </div>
 
     <script src="js/funcion.js" type="module"></script>
