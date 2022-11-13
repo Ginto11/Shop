@@ -1,4 +1,3 @@
-import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $formulario_Registro = document.getElementById("formulario__registro");
 const $formulario_Sesion = document.getElementById("formulario__sesion");
 const $btnRegistro = document.getElementById("btn__registrarse")
@@ -18,10 +17,22 @@ $formulario_Sesion.addEventListener("submit", e =>{
     const [correo, password] = [...datos.values()];
 
     listaUsuarios.filter(element =>{
-        document.getElementById("correo").value = ""
-        document.getElementById("password").value = ""
-        if(element.correo == correo && element.password != password) return alert("Contraseña incorrecta");
-        if(element.correo == correo && element.password == password) return setTimeout("location.href = './inicio.html'");
+        /*document.getElementById("correo").value = ""
+        document.getElementById("password").value = ""*/
+        if(element.correo == correo && element.password != password) {
+            document.getElementById("correo").value = ""
+            document.getElementById("password").value = ""
+            return alert("Contraseña incorrecta");
+        }
+        if(element.correo != correo && element.password != password) {
+            document.getElementById("correo").value = ""
+            document.getElementById("password").value = ""
+            return alert("Usuario no registrado.")
+        }
+        if(element.correo == correo && element.password == password) {
+            return setTimeout("location.href = './inicio.html'");
+        }
+        
     })
 });
 

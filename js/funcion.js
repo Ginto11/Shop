@@ -1,4 +1,3 @@
-import { cambiarColorDiaSoleado } from "./funcionesGlobales.js";
 const $template = document.getElementById("template").content
 const $fragmento = document.createDocumentFragment();
 let contenedorFactura = document.createElement("div");
