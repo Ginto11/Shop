@@ -16,9 +16,23 @@ $formulario_Sesion.addEventListener("submit", e =>{
     const datos = new FormData($formulario_Sesion);
     const [correo, password] = [...datos.values()];
 
-    listaUsuarios.filter(element =>{
-        /*document.getElementById("correo").value = ""
-        document.getElementById("password").value = ""*/
+    listaUsuarios.some(element =>{
+        if(element.correo == correo && element.password == password){
+            return setTimeout("location.href = './inicio.html'");
+        } 
+    });
+
+    listaUsuarios.some(element => {
+        if(element.correo != correo || element.password != password){
+            document.getElementById("correo").value = ""
+            document.getElementById("password").value = ""
+            return alert("Datos incorrectos.");
+        }
+    })
+
+    /*listaUsuarios.filter(element =>{
+        //document.getElementById("correo").value = ""
+        //document.getElementById("password").value = ""
         if(element.correo == correo && element.password != password) {
             document.getElementById("correo").value = ""
             document.getElementById("password").value = ""
@@ -33,7 +47,7 @@ $formulario_Sesion.addEventListener("submit", e =>{
             return setTimeout("location.href = './inicio.html'");
         }
         
-    })
+    }); */
 });
 
 $formulario_Registro.addEventListener("submit", e =>{
